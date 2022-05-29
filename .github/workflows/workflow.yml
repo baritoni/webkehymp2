@@ -1,33 +1,33 @@
-  name: Github Actions demo
+    name: Github Actions demo
 
-  on: 
-  push:
+    on: 
+    push:
     branches: [main]
 
-  jobs:
-  test:
-  name: Testaus ja Buildaus
-  runs-on: ubuntu-latest
+    jobs:
+    test:
+    name: Testaus ja Buildaus
+    runs-on: ubuntu-latest
 
-  steps:
+    steps:
   - uses: actions/checkout@v3
   - uses: actions/setup-node@v2
-  with:
-  node-version: 16
+    with:
+    node-version: 16
   - run: npm install
   - run: npm test
   - run: npm run build
-  env: 
-  CI: false
-  deploy:
-  name: Automaattinen julkaisu Herokuun
-  needs: test
-  runs-on: ubuntu-latest
+    env: 
+    CI: false
+    deploy:
+    name: Automaattinen julkaisu Herokuun
+    needs: test
+    runs-on: ubuntu-latest
 
-  steps:
+    steps:
   - uses: actions/checkout@v3
   - uses: akhileshns/heroku-deploy@v3.12.12
-  with:
-  heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-  heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-  heroku_email: ${{ secrets.HEROKU_EMAIL }}
+    with:
+    heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+    heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+    heroku_email: ${{ secrets.HEROKU_EMAIL }}
