@@ -1,6 +1,6 @@
-name: Github Actions demo
+  name: Github Actions demo
 
-on: 
+  on: 
   push:
     branches: [main]
 
